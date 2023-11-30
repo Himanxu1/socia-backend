@@ -10,18 +10,16 @@ async function saveBookmarks(req,res){
      if(!userId || !postId  ){
         return res.status(400).json({message:'All field required'})
      }
-    //  const existingBookmark = await prisma.bookmark.findUnique({
-    //     where: {
-    //       user_id_post_id: {
-    //         userId,
-    //         postId,
-    //       },
-    //     },
-    //   });
+     const existingBookmark = await prisma.bookmark.findFirst({
+        where: {
+         user_id :userId,
+         post_id:postId
+        },
+      });
   
-    //   if (existingBookmark) {
-    //     return res.status(400).json({ error: 'Bookmark already exists' });
-    //   }
+      if (existingBookmark) {
+        return res.status(400).json({ error: 'Bookmark already exists' });
+      }
   
      
      const bookmark = await prisma.bookmark.create({
@@ -31,7 +29,7 @@ async function saveBookmarks(req,res){
      }
     })
 
-     return  res.status(201).json("bookmark success")
+     return  res.status(201).send(bookmark)
 
     }catch(error){
         console.log(error)

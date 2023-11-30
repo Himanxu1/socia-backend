@@ -27,6 +27,13 @@ async function UpdateUser(req,res){
           bio: bio || existingUser.bio,    // Use the new bio if provided, otherwise keep the existing bio
           profile_url: avatar || existingUser.profile_url, // Use the new avatar if provided, otherwise keep the existing avatar
         },
+        select:{
+          name:true,
+          id:true,
+          profile_url:true,
+          bio:true,
+          email:true
+        }
       });
   
       res.json(updatedUser);

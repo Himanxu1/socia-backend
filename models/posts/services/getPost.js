@@ -11,9 +11,11 @@ async function getPost(req,res){
             author:{
                 select:{
                     id:true,
-                    name:true
+                    name:true,
+                    profile_url:true
                 }
-            }
+            },
+            likes:true
         }
      })
 

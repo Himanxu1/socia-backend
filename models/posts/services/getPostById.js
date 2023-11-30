@@ -19,7 +19,7 @@ async function getPostById(req,res){
                     name:true,
                     id:true
                 }
-            }
+            },
         }
      })
 

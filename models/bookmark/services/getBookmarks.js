@@ -12,7 +12,12 @@ async function getBookmarks(req,res){
         },
         include:{
            post:true,
-           user:true
+           user:{
+            select:{
+                name:true,
+                profile_url:true
+            }
+           }
         
         }
      })
